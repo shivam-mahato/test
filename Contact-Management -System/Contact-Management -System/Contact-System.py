@@ -224,22 +224,6 @@ def UpdateContactWindow(event):
 
 
 
-def Delete():
-    if not tree.selection():
-        result = tkMessageBox.showwarning('', 'Please Select in the Table First!', icon="warning")
-    else:
-        result = tkMessageBox.askquestion('', 'Are You Sure You Want To Delete This Record?', icon="warning")
-        if result == 'yes':
-            curItem = tree.focus()
-            contents = (tree.item(curItem))
-            selecteditem = contents['values']
-            tree.delete(curItem)
-            conn = sqlite3.connect("contactdb.db")
-            cursor = conn.cursor()
-            cursor.execute("DELETE FROM `contactable` WHERE `id` = %d" % selecteditem[0])
-            conn.commit()
-            cursor.close()
-            conn.close()
 
 
 def AddNewContact():
